@@ -475,3 +475,25 @@ func ExampleNativeOrder() {
 		log.Printf("status=%d resp=%v", result.Response.StatusCode, stringutillib.ObjToJsonStr(resp))
 	}
 }
+
+// /v2/pay/order/query
+func TestOrderQueryV2(t *testing.T) {
+	cfg := core.NewConfig().WithEndpoint(core.DefaultEndpoint)
+	credentials := core.NewCredentials("secret-key")
+	client, err := core.NewClient(cfg, credentials)
+	if err != nil {
+		return
+	}
+
+	ctx := context.Background()
+	service := &PayApiService{Client: client}
+	req := QueryOrderReqV2{MerchantTradeNo: "merchant-trade-no", PrepayID: "order-id"}
+	req.AddHeader("X-GatePay-Certificate-ClientId", "client-id")
+
+	resp, result, err := service.QueryOrderV2(ctx, req)
+	if err != nil {
+		log.Printf("call TestOrderQueryV2 err:%s", err.Error())
+	} else {
+		log.Printf("status=%d resp=%v", result.Response.StatusCode, stringutillib.ObjToJsonStr(resp))
+	}
+}

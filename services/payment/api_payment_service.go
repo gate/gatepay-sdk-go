@@ -331,3 +331,40 @@ func (a *PayApiService) GetOrderList(ctx context.Context, req BalanceHistoryList
 	}
 	return resp, result, nil
 }
+
+// /v2/pay/order/query
+func (a *PayApiService) QueryOrderV2(ctx context.Context, req QueryOrderReqV2) (resp *QueryOrderRespV2, result *core.APIResult, err error) {
+	var (
+		localVarHTTPMethod   = nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarQueryParams  neturl.Values
+		localVarHeaderParams = nethttp.Header{}
+	)
+
+	localVarPath := a.Client.Config.Endpoint + "/v2/pay/order/query"
+	localVarPostBody = req
+
+	//set用户设置的Header
+	for k, v := range req.GetHeaders() {
+		localVarHeaderParams.Set(k, v)
+	}
+
+	localVarQueryParams = neturl.Values{}
+	localVarQueryParams.Add("prepayId", req.PrepayID)
+	localVarQueryParams.Add("merchantTradeNo", req.MerchantTradeNo)
+
+	localVarHTTPContentTypes := core.ApplicationJSON
+	result, err = a.Client.Request(ctx, localVarHTTPMethod, localVarPath, localVarHeaderParams, localVarQueryParams, localVarPostBody, localVarHTTPContentTypes)
+	if err != nil {
+		return nil, result, err
+	}
+
+	resp = &QueryOrderRespV2{}
+	err = core.UnMarshalResponse(result.Response, resp)
+	if err != nil {
+		return nil, result, err
+	}
+
+	return resp, result, nil
+
+}

@@ -292,7 +292,7 @@ type QueryOrderRespV2 struct {
 	// 实际金额
 	ActualAmount string `json:"actualAmount"`
 
-	// 汇率
+	// 闪兑支付时的汇率
 	Rate string `json:"rate"`
 
 	// 应用名称
@@ -316,11 +316,32 @@ type QueryOrderRespV2 struct {
 	// 支付金额
 	PayAmount string `json:"pay_amount"`
 
+	// 订单金额
+	TotalFee string `json:"totalFee"`
+
+	// 订单支付成功后返回跳转地址
+	ReturnUrl string `json:"returnUrl"`
+
+	// 商户名称
+	MerchantName string `json:"merchantName"`
+
+	// 收银台跳转链接
+	Location string `json:"location"`
+
+	// 加密后的交易Hash
+	Scheme string `json:"scheme"`
+
 	// 渠道类型
 	ChannelType string `json:"channel_type"`
 
 	// 支付账户
 	PayAccount string `json:"pay_account"`
+
+	// 白牌信息
+	WhiteBrandInfo *WhiteBrandInfo `json:"whiteBrandInfo"`
+
+	// 二维码code
+	QrCode string `json:"qrcode"`
 
 	// 交易哈希 (Web3支付相关的参数)
 	TxHash string `json:"txHash"`
@@ -331,8 +352,14 @@ type QueryOrderRespV2 struct {
 	// 链 (Web3支付相关的参数)
 	Chain string `json:"chain"`
 
-	// 来源地址 (Web3支付相关的参数)
+	// 包含链名字的币种字段
+	FullCurrType string `json:"fullCurrType"`
+
+	// 付款方地址
 	FromAddress string `json:"fromAddress"`
+
+	// 链的英文展示
+	ShowChainNameEn string `json:"showChainNameEn"`
 
 	// 交易信息
 	TransactionInfo *ChainTransactionInfo `json:"transaction_info"`
@@ -352,4 +379,15 @@ type ConfirmItem struct {
 
 	// 确认数
 	Confirm int `json:"confirm"`
+}
+
+type WhiteBrandInfo struct {
+	// 白牌logo
+	LogoUrl string `json:"logoUrl"`
+
+	// 白牌名称
+	Brand string `json:"brand"`
+
+	// 白牌支持的支付方式
+	PayWays []string `json:"payWays"`
 }

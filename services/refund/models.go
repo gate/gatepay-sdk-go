@@ -66,9 +66,6 @@ type CreateRefundReqV2 struct {
 
 	// 转账memo
 	Memo string `json:"memo"`
-
-	// 退款金额类型 1:全部退 2:部分退
-	RefundAmountTypeFull int `json:"refundAmountTypeFull"`
 }
 
 type QueryRefundReqV2 struct {
@@ -172,6 +169,12 @@ type QueryRefundRespV2 struct {
 	// 付款地址
 	FromAddress string `json:"fromAddress"`
 
+	// 支付方式
+	PayChannel string `json:"payChannel"`
+
+	// 账单类型
+	BillType uint8 `json:"billType"`
+
 	// 商品名称
 	GoodsName string `json:"goodsName"`
 
@@ -186,6 +189,9 @@ type QueryRefundRespV2 struct {
 
 	// 订单维度-实际到账订单币种
 	TotalReceiveCurrency string `json:"totalReceiveCurrency"`
+
+	// 退款单详情列表
+	RefundDetails []*RefundDetailItem `json:"refundDetails"`
 }
 
 type QueryRefundSupportChainsReqV2 struct {
@@ -209,19 +215,19 @@ type ChainItem struct {
 	// 币种
 	Currency string `json:"currency"`
 
-	// 完整货币类型
+	// 含网络信息的币种符号
 	FullCurrType string `json:"full_curr_type"`
 
-	// 符号
+	// 链上交易符号
 	Symbol string `json:"symbol"`
 
-	// 浏览器URL
+	// 浏览地址
 	ExplorerURL string `json:"explorer_url"`
 
 	// 显示的英文链名称
 	ShowChainNameEn string `json:"show_chain_name_en"`
 
-	// 是否有提现备注
+	// 是否有提现备注,0:无，1:有
 	HasWithdrawMemo int `json:"hasWithdrawMemo"`
 
 	// 提现百分比
@@ -229,4 +235,39 @@ type ChainItem struct {
 
 	// 固定提现费用
 	WithdrawFix string `json:"withdrawFix"`
+}
+
+type RefundDetailItem struct {
+	// 支付流水订单号
+	TransactionId string `json:"transactionId"`
+
+	// 退款时间
+	TransactTime int64 `json:"transactTime"`
+
+	// 支付渠道
+	PayChannel string `json:"payChannel"`
+
+	// 退款状态
+	Status string `json:"status"`
+
+	// 退款金额
+	Amount string `json:"amount"`
+
+	// 订单币种
+	Currency string `json:"currency"`
+
+	// 收款网络
+	Chain string `json:"chain"`
+
+	// 收款地址
+	Address string `json:"address"`
+
+	// 交易hash
+	Hash string `json:"hash"`
+
+	// 备注
+	Remark string `json:"remark"`
+
+	// 账单类型
+	BillType uint8 `json:"billType"`
 }

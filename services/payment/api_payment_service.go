@@ -341,7 +341,7 @@ func (a *PayApiService) QueryOrderV2(ctx context.Context, req QueryOrderReqV2) (
 		localVarHeaderParams = nethttp.Header{}
 	)
 
-	localVarPath := a.Client.Config.Endpoint + "/v2/pay/order/query"
+	localVarPath := core.DefaultEndpoint + "/v2/pay/order/query"
 	localVarPostBody = req
 
 	//set用户设置的Header

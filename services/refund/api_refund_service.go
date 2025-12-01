@@ -42,7 +42,7 @@ func (a *ApiRefundV2Service) CreateRefundReq(ctx context.Context, req CreateRefu
 		localVarHeaderParams = nethttp.Header{}
 	)
 
-	localVarPath := a.Client.Config.Endpoint + "/v2/standard/order/refund"
+	localVarPath := core.DefaultEndpoint + "/v2/standard/order/refund"
 	localVarPostBody = req
 
 	for k, v := range req.GetHeaders() {
@@ -81,7 +81,7 @@ func (a *ApiRefundV2Service) QueryRefund(ctx context.Context, req QueryRefundReq
 	localVarQueryParams = neturl.Values{}
 	localVarQueryParams.Add("refundRequestId", req.RefundRequestID)
 
-	localVarPath := a.Client.Config.Endpoint + "/v2/pay/refund/details"
+	localVarPath := core.DefaultEndpoint + "/v2/pay/refund/details"
 	localVarPostBody = req
 	localVarHTTPContentTypes := core.ApplicationJSON
 
@@ -107,7 +107,7 @@ func (a *ApiRefundV2Service) QueryRefundSupportChainsV2(ctx context.Context, req
 		localVarHeaderParams = nethttp.Header{}
 	)
 
-	localVarPath := a.Client.Config.Endpoint + "/v2/refund/support/chains"
+	localVarPath := core.DefaultEndpoint + "/v2/refund/support/chains"
 	localVarPostBody = req
 
 	//set用户设置的Header

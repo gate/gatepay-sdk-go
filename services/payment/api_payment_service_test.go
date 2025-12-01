@@ -162,6 +162,32 @@ func TestCreateOrder(t *testing.T) {
 	}
 }
 
+// /v1/pay/order/close
+func TestCloseOrder(t *testing.T) {
+	cfg := core.NewConfig()
+	credentials := core.NewCredentials("secret-key")
+	client, err := core.NewClient(cfg, credentials)
+	if err != nil {
+		log.Printf("new wechat pay client err:%s", err)
+		return
+	}
+
+	ctx := context.Background()
+	service := &PayApiService{Client: client}
+	req := OperateOrderRequest{
+		PrepayID:        "order-id",
+		MerchantTradeNo: "merchant-trade-no",
+	}
+
+	req.AddHeader("X-GatePay-Certificate-ClientId", "client-id")
+	resp, result, err := service.CloseOrder(ctx, req)
+	if err != nil {
+		log.Printf("call CloseOrder err:%s", err.Error())
+	} else {
+		log.Printf("status=%d resp=%v", result.Response.StatusCode, stringutillib.ObjToJsonStr(resp))
+	}
+}
+
 func ExampleCreateOrder() {
 	cfg := core.NewConfig()
 	credentials := core.NewCredentials("secret-key")

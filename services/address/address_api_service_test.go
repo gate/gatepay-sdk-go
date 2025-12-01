@@ -141,6 +141,37 @@ func TestCreateAddressOrder(t *testing.T) {
 	}
 }
 
+func TestRefundAddress(t *testing.T) {
+	cfg := core.NewConfig()
+	credentials := core.NewCredentials("secret-key")
+	client, err := core.NewClient(cfg, credentials)
+	if err != nil {
+		log.Printf("new wechat pay client err:%s", err)
+		return
+	}
+
+	ctx := context.Background()
+	service := &AddressApiService{Client: client}
+
+	orderAmount, _ := decimal.NewFromString("1.2")
+
+	req := CreateAddressRefundRequest{
+		RefundRequestID: "refund-request-id",
+		PrepayID:        "order-id",
+		RefundAmount:    orderAmount,
+		RefundReason:    "refund-reason",
+		ReceiverId:      0, // 收款人gate uid
+	}
+
+	req.AddHeader("X-GatePay-Certificate-ClientId", "client-id")
+	resp, result, err := service.RefundAddress(ctx, req)
+	if err != nil {
+		log.Printf("call RefundAddress err:%s", err.Error())
+	} else {
+		log.Printf("status=%d resp=%v", result.Response.StatusCode, stringutillib.ObjToJsonStr(resp))
+	}
+}
+
 func ExampleQueryAddressOrder() {
 	cfg := core.NewConfig()
 	credentials := core.NewCredentials("secret-key")

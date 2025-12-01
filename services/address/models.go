@@ -92,11 +92,15 @@ type QueryAddressOrderResp struct {
 	ChannelId       string                `json:"channelId"` // 客户渠道名称
 	Address         string                `json:"address"`   // 地址
 	Chain           string                `json:"chain"`     // 网络
+	FromAddress     string                `json:"fromAddress"`
 }
 
 type ChainTransactionInfo struct {
-	DoneAmount     decimal.Decimal `json:"done_amount"`
-	ConfirmingList []*ConfirmItem  `json:"confirming_list"`
+	DoneAmount           decimal.Decimal `json:"done_amount"`
+	DoneAmountTotal      string          `json:"done_amount_total"`
+	ConfirmingList       []*ConfirmItem  `json:"confirming_list"`
+	DoneTxItemList       []*TxItem       `json:"done_tx_item_list"`
+	ConfirmingTxItemList []*TxItem       `json:"confirming_tx_item_list"`
 }
 
 type ConfirmItem struct {
@@ -204,4 +208,5 @@ type TxItem struct {
 	TxId          string          `json:"txId"`
 	UtcCreateTime string          `json:"utcCreateTime"`
 	UtcUpdateTime string          `json:"utcUpdateTime"`
+	FromAddress   string          `json:"fromAddress"`
 }

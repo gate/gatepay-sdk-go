@@ -21,6 +21,7 @@ type QueryOrderResponse struct {
 	GoodsName       string `json:"goodsName"`
 	Currency        string `json:"currency"`
 	OrderAmount     string `json:"orderAmount"`
+	SurchargeAmount string `json:"surchargeAmount"`
 	Status          string `json:"status"`
 	CreateTime      int64  `json:"createTime"`
 	ExpireTime      int64  `json:"expireTime"`

@@ -37,10 +37,11 @@ type GoodsRequest struct {
 type CreateOrderRequest struct {
 	common.BaseRequest
 	MerchantTradeNo string          `json:"merchantTradeNo" validator:"nonemptyString"`
-	Currency        string          `json:"currency" validator:"nonemptyString"`    // order_currency
-	OrderAmount     decimal.Decimal `json:"orderAmount" validator:"boundedDecimal"` // order_amount default zero
-	PayCurrency     string          `json:"payCurrency"`                            // pay_currency 非地址支付PayCurrency 在实际付款确定 ，地址支付在下单时候确定
-	ActualCurrency  string          `json:"actualCurrency"`                         // merchant actual currency
+	Currency        string          `json:"currency" validator:"nonemptyString"`        // order_currency
+	OrderAmount     decimal.Decimal `json:"orderAmount" validator:"boundedDecimal"`     // order_amount default zero
+	SurchargeAmount decimal.Decimal `json:"surchargeAmount" validator:"boundedDecimal"` // customer fee default zero
+	PayCurrency     string          `json:"payCurrency"`                                // pay_currency 非地址支付PayCurrency 在实际付款确定 ，地址支付在下单时候确定
+	ActualCurrency  string          `json:"actualCurrency"`                             // merchant actual currency
 	Env             EnvRequest      `json:"env"`
 	Goods           GoodsRequest    `json:"goods"`
 	OrderExpireTime int64           `json:"orderExpireTime"`
@@ -80,6 +81,7 @@ type QueryAddressOrderResp struct {
 	GoodsName       string                `json:"goodsName"`
 	Currency        string                `json:"currency"`
 	OrderAmount     string                `json:"orderAmount"`
+	SurchargeAmount string                `json:"surchargeAmount"`
 	PayCurrency     string                `json:"payCurrency"`
 	PayAmount       decimal.Decimal       `json:"payAmount"`
 	Rate            decimal.Decimal       `json:"rate"`

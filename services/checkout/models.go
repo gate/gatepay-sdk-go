@@ -20,6 +20,7 @@ type CreateOrderRequest struct {
 	MerchantTradeNo string          `json:"merchantTradeNo"`
 	Currency        string          `json:"currency"`
 	OrderAmount     decimal.Decimal `json:"orderAmount"`
+	SurchargeAmount decimal.Decimal `json:"surchargeAmount"`
 	PayCurrency     string          `json:"payCurrency"`
 	ActualCurrency  string          `json:"actualCurrency"`
 	Env             EnvRequest      `json:"env"`
@@ -40,18 +41,20 @@ type Chain struct {
 }
 
 type CreateOrderResponseV2 struct {
-	PrepayID     string `json:"prepayId"`
-	TerminalType string `json:"terminalType"`
-	ExpireTime   int64  `json:"expireTime"`
-	QrContent    string `json:"qrContent"`
-	Location     string `json:"location"`
-	PayCurrency  string `json:"payCurrency"`
-	PayAmount    string `json:"payAmount"`
-	ChainInfo    Chain  `json:"chain"`
-	AppName      string `json:"appName"`
-	AppLogo      string `json:"appLogo"`
-	GoodsName    string `json:"goodsName"`
-	InUsdt       string `json:"inUsdt"`
+	PrepayID        string `json:"prepayId"`
+	TerminalType    string `json:"terminalType"`
+	ExpireTime      int64  `json:"expireTime"`
+	QrContent       string `json:"qrContent"`
+	Location        string `json:"location"`
+	PayCurrency     string `json:"payCurrency"`
+	PayAmount       string `json:"payAmount"`
+	OrderAmount     string `json:"orderAmount"`
+	SurchargeAmount string `json:"surchargeAmount"`
+	ChainInfo       Chain  `json:"chain"`
+	AppName         string `json:"appName"`
+	AppLogo         string `json:"appLogo"`
+	GoodsName       string `json:"goodsName"`
+	InUsdt          string `json:"inUsdt"`
 }
 
 type CreateCheckStandRefundResponse struct {

@@ -21,6 +21,7 @@ type CreateOrderRequest struct {
 	Currency        string          `json:"currency"`
 	OrderAmount     decimal.Decimal `json:"orderAmount"`
 	SurchargeAmount decimal.Decimal `json:"surchargeAmount"`
+	ToleranceAmount decimal.Decimal `json:"toleranceAmount"`
 	PayCurrency     string          `json:"payCurrency"`
 	ActualCurrency  string          `json:"actualCurrency"`
 	Env             EnvRequest      `json:"env"`
@@ -50,6 +51,7 @@ type CreateOrderResponseV2 struct {
 	PayAmount       string `json:"payAmount"`
 	OrderAmount     string `json:"orderAmount"`
 	SurchargeAmount string `json:"surchargeAmount"`
+	ToleranceAmount string `json:"toleranceAmount"`
 	ChainInfo       Chain  `json:"chain"`
 	AppName         string `json:"appName"`
 	AppLogo         string `json:"appLogo"`

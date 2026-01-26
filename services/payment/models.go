@@ -22,6 +22,7 @@ type QueryOrderResponse struct {
 	Currency        string `json:"currency"`
 	OrderAmount     string `json:"orderAmount"`
 	SurchargeAmount string `json:"surchargeAmount"`
+	ToleranceAmount string `json:"toleranceAmount"`
 	Status          string `json:"status"`
 	CreateTime      int64  `json:"createTime"`
 	ExpireTime      int64  `json:"expireTime"`
@@ -271,6 +272,9 @@ type QueryOrderRespV2 struct {
 
 	// 订单金额
 	OrderAmount string `json:"orderAmount"`
+
+	// 容差金额
+	ToleranceAmount string `json:"toleranceAmount"`
 
 	// 订单状态
 	Status string `json:"status"`

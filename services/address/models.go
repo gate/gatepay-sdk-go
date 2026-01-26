@@ -84,6 +84,7 @@ type QueryAddressOrderResp struct {
 	OrderAmount     string                `json:"orderAmount"`
 	SurchargeAmount string                `json:"surchargeAmount"`
 	ToleranceAmount string                `json:"toleranceAmount"`
+	UnderpaidAmount string                `json:"underpaidAmount"`
 	PayCurrency     string                `json:"payCurrency"`
 	PayAmount       decimal.Decimal       `json:"payAmount"`
 	Rate            decimal.Decimal       `json:"rate"`

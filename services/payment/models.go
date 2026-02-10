@@ -22,6 +22,9 @@ type QueryOrderResponse struct {
 	Currency        string `json:"currency"`
 	OrderAmount     string `json:"orderAmount"`
 	SurchargeAmount string `json:"surchargeAmount"`
+	FiatCurrency    string `json:"fiatCurrency"`
+	FiatAmount      string `json:"fiatAmount"`
+	FiatRate        string `json:"fiatRate"`
 	ToleranceAmount string `json:"toleranceAmount"`
 	UnderpaidAmount string `json:"underpaidAmount"`
 	Status          string `json:"status"`
@@ -56,9 +59,11 @@ type GoodsRequest struct {
 type CreateOrderRequest struct {
 	common.BaseRequest
 	MerchantTradeNo string          `json:"merchantTradeNo"`
-	Currency        string          `json:"currency"`       // order_currency
-	OrderAmount     decimal.Decimal `json:"orderAmount"`    // order_amount default zero
-	PayCurrency     string          `json:"payCurrency"`    // pay_currency 非地址支付PayCurrency 在实际付款确定 ，地址支付在下单时候确定
+	Currency        string          `json:"currency"`    // order_currency
+	OrderAmount     decimal.Decimal `json:"orderAmount"` // order_amount default zero
+	PayCurrency     string          `json:"payCurrency"` // pay_currency 非地址支付PayCurrency 在实际付款确定 ，地址支付在下单时候确定
+	FiatCurrency    string          `json:"fiatCurrency"`
+	FiatAmount      decimal.Decimal `json:"fiatAmount"`
 	ActualCurrency  string          `json:"actualCurrency"` // merchant actual currency
 	Env             EnvRequest      `json:"env"`
 	Goods           GoodsRequest    `json:"goods"`
@@ -273,6 +278,15 @@ type QueryOrderRespV2 struct {
 
 	// 订单金额
 	OrderAmount string `json:"orderAmount"`
+
+	// 法币币种
+	FiatCurrency string `json:"fiatCurrency"`
+
+	// 法币金额
+	FiatAmount string `json:"fiatAmount"`
+
+	// 法币汇率
+	FiatRate string `json:"fiatRate"`
 
 	// 容差金额
 	ToleranceAmount string `json:"toleranceAmount"`

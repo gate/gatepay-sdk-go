@@ -25,6 +25,8 @@ type QueryOrderResponse struct {
 	FiatCurrency    string `json:"fiatCurrency"`
 	FiatAmount      string `json:"fiatAmount"`
 	FiatRate        string `json:"fiatRate"`
+	ToleranceAmount string `json:"toleranceAmount"`
+	UnderpaidAmount string `json:"underpaidAmount"`
 	Status          string `json:"status"`
 	CreateTime      int64  `json:"createTime"`
 	ExpireTime      int64  `json:"expireTime"`
@@ -285,6 +287,12 @@ type QueryOrderRespV2 struct {
 
 	// 法币汇率
 	FiatRate string `json:"fiatRate"`
+
+	// 容差金额
+	ToleranceAmount string `json:"toleranceAmount"`
+
+	// 剩余未付金额
+	UnderpaidAmount string `json:"underpaidAmount"`
 
 	// 订单状态
 	Status string `json:"status"`

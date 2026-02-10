@@ -44,6 +44,7 @@ type CreateOrderRequest struct {
 	FiatAmount      decimal.Decimal `json:"fiatAmount" validator:"boundedDecimal"`
 	PayCurrency     string          `json:"payCurrency"`    // pay_currency 非地址支付PayCurrency 在实际付款确定 ，地址支付在下单时候确定
 	ActualCurrency  string          `json:"actualCurrency"` // merchant actual currency
+	ToleranceAmount decimal.Decimal `json:"toleranceAmount" validator:"boundedDecimal"` // tolerance amount default zero
 	Env             EnvRequest      `json:"env"`
 	Goods           GoodsRequest    `json:"goods"`
 	OrderExpireTime int64           `json:"orderExpireTime"`
@@ -87,6 +88,8 @@ type QueryAddressOrderResp struct {
 	FiatCurrency    string                `json:"fiatCurrency"`
 	FiatAmount      string                `json:"fiatAmount"`
 	FiatRate        string                `json:"fiatRate"`
+	ToleranceAmount string                `json:"toleranceAmount"`
+	UnderpaidAmount string                `json:"underpaidAmount"`
 	PayCurrency     string                `json:"payCurrency"`
 	PayAmount       decimal.Decimal       `json:"payAmount"`
 	Rate            decimal.Decimal       `json:"rate"`
